@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ blog.blogname }}</title>
+        <description>하하하</description>
+        <link>{{ blog.url }}<link>
+    </channel>
+    {%for post in posts %}
+    <item>
+        <title>{{ post['title'].decode('utf8') }}</title>
+        <link>{{blog.url}}/{{post.year}}/{{post.month}}/{{ post.title.decode('utf8') }}</link>
+    </item>
+    {%endfor%}
+</rss>

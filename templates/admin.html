@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block body %}
+ <h2>admin</h2>
+ {% if request.form.e %}
+    {% if err_str[request.form.e] %}
+        <p class=error><strong>Error:</strong> {{ err_str[request.form.e] }}
+    {% endif %}
+ {% endif %}
+ {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+  <form action="{{ url_for('config_reset') }}" method=post>
+    <dl>
+      <dt>Username:
+      <dd><input type=text name=id>
+      
+      <dt>Email
+      <dd><input type=text name=em>
+      
+      <dt>Password:
+      <dd><input type=password name=pw>
+      
+      <dd><input type=submit value=config_reset>
+    </dl>
+  </form> 
+  
+  <form action="{{ url_for('create_repo') }}" method=post>
+    <dl>
+      <dt>GitHub Repo:
+      <dd><input type=text name=repo>         
+      <dd><input type=submit value=create_repo>
+    </dl>
+  </form>   
+
+  <form action="{{ url_for('select_repo') }}" method=post>
+    <dl>
+      <dt>Select Repos.:
+    <dl>
+    {% if ctx %}
+          {% for key, value in ctx.repolist.iteritems() %}
+                {% if key == ctx.myrepo %}
+                    {% set checked = 'checked' %}
+                {% else %}
+                    {% set checked = '' %}
+                {% endif %}
+                <input type=radio name=repo_name value='{{ key }}' {{ checked }}>{{ key }}<br>
+          {% endfor %}
+    {% endif %}          
+    </dl>  
+      <dd><input type=submit value=select_repo>
+    </dl>
+  </form>
+  
+  <a href="{{ url_for('git_clone') }}">저장소 클로닝</a><br>
+  <a href="{{ url_for('new') }}">새글 쓰기</a><br>
+  <a href="{{ url_for('gitpull') }}">로컬 동기화 (git pull)</a><br>
+  
+
+
+{% endblock %}

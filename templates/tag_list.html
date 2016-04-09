@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>tblog</h2>
+    {% if posts %}
+          {% for post in posts %}
+                
+                {{ post['date'] }} | 
+                {#{ post['time'] }#} 
+                {#{ post['timestamp'] }#} 
+                <a href="{{ url_for('view', year=post['year'], month=post['month'], filename=post['title'].decode('utf8'))}}">{{ post['title'].decode('utf8') }}</a><br>
+          {% endfor %}
+    {% endif %}            
+  
+  
+{% endblock %}

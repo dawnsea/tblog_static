@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<title>[t:/]</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<div class=page>
+  <div class=home><a href="{{ url_for('index') }}">[t:/]</a>
+  {% if tag %}
+    #{{ tag }}
+  {% endif %}
+  </div>
+  {% block body %}{% endblock %}
+</div>
+<div class=footer>
+<span class=ft>[t:/] is not "technology - root". dawnsea, python, flask, github, 2016, ... <a href="{{ url_for('rss') }}">/rss</a> 
+{% if not session.logged_in %}
+<a style='color:#ffffff' href="{{ url_for('login') }}">/login</a>
+{% else %}
+    <a href="{{ url_for('logout') }}">/logout</a>
+    <a href="{{ url_for('admin_view') }}">/admin</a>
+    <a href="{{ url_for('git_sync') }}">/github sync</a>
+    <a href="{{ url_for('new') }}">/new</a>
+    
+{% endif %}
+</span>
+</div>
+</html>

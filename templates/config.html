@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Config</h2>
+  <form action="{{ url_for('config_proc') }}" method=post>
+    <dl>
+      <dt>Blogname:
+      <dd><input type=text name=blogname>
+      
+      <dt>글쓴이:
+      <dd><input type=text name=blogger>
+      
+      <dt>url:
+      <dd><input type=text name=url>
+      
+      <dt>Username:
+      <dd><input type=text name=id>
+      
+      <dt>Email
+      <dd><input type=text name=em>
+      
+      <dt>Password:
+      <dd><input type=password name=pw>
+      
+      <dt>GitHub Email
+      <dd><input type=text name=gem>
+      
+      <dt>GitHub Password
+      <dd><input type=password name=gpw>      
+      
+      <dd><input type=submit value=ok>
+    </dl>
+  </form>
+{% endblock %}
